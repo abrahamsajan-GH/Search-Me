@@ -1,0 +1,17 @@
+void _selectImage() async {
+    final pickedFile =
+        await ImagePicker().pickImage(source: ImageSource.gallery);
+
+    setState(() {
+      if (pickedFile != null) {
+        File imageFile = File(pickedFile.path);
+        int fileSizeInBytes = imageFile.lengthSync();
+        int fileSizeInKB = fileSizeInBytes ~/ 1024;
+        if (fileSizeInKB <= 250) {
+          _image = imageFile;
+        } else {
+          const Text('Upload image less than 250 KB size!');
+        }
+      }
+    });
+  }  --------> For Registration Image
